@@ -1,0 +1,46 @@
+{
+  "id": "/python-app-group3",
+  "groups": [
+    {
+      "id": "/python-app-group3/app-group1",
+      "apps": [
+        {
+          "id": "basic-3",
+          "labels": {"HAPROXY_GROUP": "external"},
+          "cmd": "python callee.py 2000 3",
+          "cpus": 0.25,
+          "mem": 64,
+          "ports": [
+           10002
+          ],
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "localhost:5000/callee:1",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 2000,
+                  "hostPort": 0,
+		  "servicePort": 10002
+                }
+              ]
+            }
+          },
+          "healthChecks": [
+            {
+              "path": "/callee",
+              "protocol": "HTTP",
+              "portIndex": 0,
+              "command": null,
+         "timeoutSeconds": 10,
+              "maxConsecutiveFailures": 1,
+              "gracePeriodSeconds": 15,
+              "ignoreHttp1xx": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

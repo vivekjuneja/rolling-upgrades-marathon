@@ -1,0 +1,46 @@
+{
+  "id": "/python-app-group2",
+  "groups": [
+    {
+      "id": "/python-app-group2/app-group1",
+      "apps": [
+        {
+          "id": "basic-3",
+          "labels": {"HAPROXY_GROUP": "external"},
+          "cmd": "python caller.py 3000 localhost:10002",
+          "cpus": 0.20,
+          "mem": 64,
+          "ports": [
+            34000
+          ],
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "localhost:5000/caller:1",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 3000,
+                  "hostPort": 0,
+ 		  "servicePort": 10000
+                }
+              ]
+            }
+          },
+          "healthChecks": [
+            {
+              "path": "/caller",
+              "protocol": "HTTP",
+              "portIndex": 0,
+              "command": null,
+         "timeoutSeconds": 10,
+              "maxConsecutiveFailures": 1,
+              "gracePeriodSeconds": 15,
+              "ignoreHttp1xx": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
