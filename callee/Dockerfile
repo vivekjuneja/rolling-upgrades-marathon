@@ -1,4 +1,6 @@
 FROM python:2.7.11-slim
+MAINTAINER vivekjuneja@gmail.com
+
 
 WORKDIR /
 
