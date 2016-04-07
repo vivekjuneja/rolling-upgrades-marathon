@@ -20,7 +20,6 @@ def handle_sighup(signo, stack_frame):
     print "I got hanged up"
    
 signal.signal(signal.SIGTERM, handle_sigterm)
-#signal.signal(signal.SIGKILL, handle_sigkill)
 signal.signal(signal.SIGHUP, handle_sighup)
 
 @app.route("/isHealthy")
@@ -32,8 +31,10 @@ def health():
 @app.route('/caller', methods=['GET'])
 def get_task1():
     _id = request.args.get('id')
-    print requests.get('http://'+callee_addr+'/callee')
-    return jsonify({'task': 'Work of Caller is over !', 'hostname' : socket.gethostname(), 'id': _id})
+    req_json = requests.get('http://'+callee_addr+'/callee?id='+_id).json()
+    callee_host = req_json["callee_host"]
+    callee_processing_id = req_json["processing_id"]
+    return jsonify({'task': 'Work of Caller is over !', 'caller_host' : socket.gethostname(), 'id': _id, 'callee_host': callee_host, 'callee_processing_id': callee_processing_id})
 
 
 if __name__ == '__main__':

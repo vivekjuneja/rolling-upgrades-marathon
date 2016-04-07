@@ -7,8 +7,8 @@
         {
           "id": "basic-3",
           "labels": {"HAPROXY_GROUP": "external"},
-          "cmd": "python caller.py 3000 localhost:10002",
-          "cpus": 0.20,
+          "cmd": "python caller.py 3000 10.53.15.211:10002",
+          "cpus": 0.30,
           "mem": 64,
           "ports": [
             34000
@@ -16,7 +16,7 @@
           "container": {
             "type": "DOCKER",
             "docker": {
-              "image": "localhost:5000/caller:1",
+              "image": "registry.global.gravity/vivek/caller:3",
               "network": "BRIDGE",
               "portMappings": [
                 {
@@ -29,7 +29,7 @@
           },
           "healthChecks": [
             {
-              "path": "/caller",
+              "path": "/isHealthy",
               "protocol": "HTTP",
               "portIndex": 0,
               "command": null,
