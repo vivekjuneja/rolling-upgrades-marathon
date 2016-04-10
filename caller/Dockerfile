@@ -1,4 +1,4 @@
-FROM python:2.7.11-slim
+FROM hypriot/rpi-python:latest
 
 WORKDIR /
 
