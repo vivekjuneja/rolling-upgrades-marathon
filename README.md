@@ -5,4 +5,5 @@ We demonstrate how rolling upgrade is implemented by Marathon for a Mesos Cluste
 
 Caller invokes Callee. Both applications are deployed as Docker Containers. Using Caller and Callee, we can test scenario where the Caller application is upgraded through rolling mechanism via Marathon, in the midst of transaction. The goal is to have a graceful upgrade of the Caller application, without causing an ongoing transaction with Callee application to break. 
 
-
+Additions :-
++ Support running on ARM Device like Raspberry Pi
