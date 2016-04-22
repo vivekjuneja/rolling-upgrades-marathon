@@ -7,7 +7,7 @@
         {
           "id": "basic-3",
           "labels": {"HAPROXY_GROUP": "external"},
-          "cmd": "python caller.py 3000 10.53.15.211:10002",
+          "args": ["python", "caller.py", "3000", "10.53.15.211:10002"],
           "cpus": 0.30,
           "mem": 64,
           "ports": [

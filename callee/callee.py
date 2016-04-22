@@ -10,13 +10,23 @@ app.debug=True
 port = None
 sleep_seconds = None
 
+request_count = 0
+
 isHealthy = True
 
+func = None
+
+def shutdown_server():
+   sys.exit()
+
+
 def handle_sigterm(signo, stack_frame):
-    global isHealthy
+    global isHealthy	
     isHealthy = False
-    print "I got Terminated"
-    system.exit()
+    print "I got Terminated, exiting in 2 sleep_seconds"
+    time.sleep(2)
+    shutdown_server()
+    
 
 def handle_sighup(signo, stack_frame):
 	global isHealthy
@@ -34,6 +44,7 @@ def health():
 
 @app.route('/callee', methods=['GET'])
 def get_task2(): 
+	request_count =+ 1
     _id = request.args.get('id')
     time.sleep(int(sleep_seconds))
     print _id

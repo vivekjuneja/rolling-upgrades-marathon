@@ -7,7 +7,7 @@
         {
           "id": "basic-3",
           "labels": {"HAPROXY_GROUP": "external"},
-          "cmd": "python callee.py 2000 5",
+	  "args": ["python", "callee.py", "2000", "5"],
           "cpus": 0.25,
           "mem": 64,
           "ports": [
@@ -16,7 +16,7 @@
           "container": {
             "type": "DOCKER",
             "docker": {
-              "image": "registry.global.gravity/vivek/callee:8",
+              "image": "registry.global.gravity/vivek/callee:9",
               "network": "BRIDGE",
               "portMappings": [
                 {
